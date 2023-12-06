@@ -160,12 +160,14 @@ export async function fetchInvoiceById(id: string) {
       FROM invoices
       WHERE invoices.id = ${id};
     `;
-
     const invoice = data.rows.map((invoice) => ({
       ...invoice,
       // Convert amount from cents to dollars
       amount: invoice.amount / 100,
     }));
+
+    //The `error.tsx` file serves as a catch-all for unexpected errors and allows you to display a fallback UI to your users.
+    //console.log(invoice);
 
     return invoice[0];
   } catch (error) {
